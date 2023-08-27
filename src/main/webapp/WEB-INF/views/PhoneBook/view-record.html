@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Java + Spring Framework + Bootstrap</title>
+    <link href="/resources/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/resources/css/site.css" rel="stylesheet" />
+</head>
+<body>
+<!-- Navigation -->
+<div class="container">
+    <h2 class="text-center alert-secondary">
+        Notebook
+    </h2>
+    <div class="card card-outline-primary m-1 p-1">
+        <div class="bg-faded p-1">
+            <h5>
+                <span th:text="${phoneBook.lastName}"/>&nbsp; <span th:text="${phoneBook.firstName}"/>
+                &nbsp;<span th:text="${phoneBook.threeName}"/>
+            </h5>
+            <div>
+                <span th:text="${phoneBook.description}"/>
+            </div>
+            <div>
+                <span th:text="${phoneBook.numberPhone}"/>
+            </div>
+            <div>
+                <span th:text="${phoneBook.address}"/>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/resources/lib/jquery/dist/jquery.min.js"/>
+<script src="/resources/lib/bootstrap/dist/js/bootstrap.bundle.min.js"/>
+<script src="/resources/js/site.js"/>
+</body>
+</html>

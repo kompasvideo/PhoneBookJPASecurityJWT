@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Java + Spring Framework + Bootstrap</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="ru"/>
+    <link href="/resources/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/resources/css/site.css" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- Navigation -->
+<div class="container">
+    <div class="row g-0">
+        <div class="col-9 text-center alert-secondary">
+            <h2>Notebook</h2>
+        </div>
+        <div class="col-2 text-center alert-secondary">
+            <div th:switch="${typeSign}" style="text-align: center;vertical-align: middle;line-height: 45px; ">
+                <div th:case="0">
+                </div>
+                <div th:case="1">
+                    <span>User:</span>
+                    <span th:text="${userName}"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-1 alert-secondary">
+            <div th:switch="${typeSign}">
+                <div th:case="0">
+                    <form action="/login">
+                        <input type="hidden" name="type" value="0" th:attr="value=${typeSign}"/>
+                        <button type="submit" class="btn btn-primary">
+                            Sign in
+                        </button>
+                    </form>
+                </div>
+                <div th:case="1">
+                    <form action="/logout">
+                        <input type="hidden" name="type" value="0" th:attr="value=${typeSign}"/>
+                        <button type="submit" class="btn btn-primary">
+                            Sign out
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row m-1 p-1">
+            <div class="col-2">
+                <form action="/viewAddRecord" method="post" th:action="@{/viewAddRecord}" th:method="PA">
+                    <button type="submit" class="btn btn-block btn-primary">
+                        Add record
+                    </button>
+                </form>
+            </div>
+            <div class="col-10">
+                <div th:each="phoneBook : ${phoneBooks}">
+                    <div class="card card-outline-primary m-1 p-1">
+                        <div>
+                            <form  th:action="@{/viewRecord}" class="d-inline-flex">
+                                <input type="hidden" name="id" value="0" th:attr="value=${phoneBook.phoneBookID}"/>
+                                <button type="submit" class="btn btn-secondary btn-sm">
+                                    <span th:text="${phoneBook.phoneBookID}"/>
+                                </button>
+                            </form>
+                            <div class="d-inline-flex">
+                                <span th:text="${phoneBook.lastName}"/>&nbsp;<span th:text="${phoneBook.firstName}"/>
+                                &nbsp;<span th:text="${phoneBook.threeName}"/>
+                            </div>
+                            <form action="deleteRecord"  th:action="@{/deleteRecord}" th:method="PA"
+                                  method="post" class="d-inline-flex pull-right" style="float:right">
+                                <input type="hidden" name="id"
+                                       value="1" th:attr="value=${phoneBook.phoneBookID}"/>
+                                <button type="submit"
+                                        class="btn btn-danger btn-sm">
+                                    Delete
+                                </button>
+                            </form>
+                            <form action="editRecord"  th:action="@{/editRecord}" th:method="PA"
+                                  method="post" class="d-inline-flex pull-right" style="float:right">
+                                <input type="hidden" name="id"
+                                       value="1" th:attr="value=${phoneBook.phoneBookID}"/>
+                                <button type="submit"
+                                        class="btn btn-success btn-sm">
+                                    Edit
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/resources/lib/jquery/dist/jquery.min.js"/>
+<script src="/resources/lib/bootstrap/dist/js/bootstrap.bundle.min.js"/>
+<script src="/resources/js/site.js"/>
+</body>
+</html>

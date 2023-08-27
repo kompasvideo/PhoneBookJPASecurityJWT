@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Java + Spring Framework + Bootstrap</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" lang="ru"/>
+    <link href="/resources/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/resources/css/site.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <div class="row g-0">
+        <div class="col-12 text-center alert-secondary">
+            <h2>Notebook</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">&nbsp;</div>
+        <div class="card card-outline-primary text-center border-primary col-6 pad">
+            <div class="card-header bg-faded bg-primary text-white">
+                Log In
+            </div>
+            <div class="card-body">
+                <div th:if="${param.error}">
+                    Invalid username and password.
+                </div>
+                <div th:if="${param.logout}">
+                    You have been logged out.
+                </div>
+                <form th:action="@{/login}" th:method="PA">
+                    User Name : <input type="text" name="username" class="form-control"/>
+                    Password: <input type="password" name="password" class="form-control"/>
+                    <input class="btn btn-primary" type="submit" value="Sign In"/>
+                </form>
+            </div>
+        </div>
+        <div class="col-3">&nbsp;</div>
+    </div>
+</div>
+<script src="/resources/lib/jquery/dist/jquery.min.js"/>
+<script src="/resources/lib/bootstrap/dist/js/bootstrap.bundle.min.js"/>
+<script src="/resources/js/site.js"/>
+</body>
+</html>
